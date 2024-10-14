@@ -10,7 +10,7 @@
 				"type": "string"
 			},
 			"Tablename": {
-				"type": "string"
+				"type": "array"
 			}
 		},
 		"annotations": [],
