@@ -129,7 +129,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('Lookup1').output.Tablename",
+								"value": "@activity('Lookup1').output.value",
 								"type": "Expression"
 							},
 							"isSequential": false,
@@ -181,7 +181,7 @@
 											"parameters": {
 												"schema": "SalesLT",
 												"Tablename": {
-													"value": "@item()",
+													"value": "@item().Tablename",
 													"type": "Expression"
 												}
 											}
@@ -195,7 +195,7 @@
 												"File_system": "data",
 												"Directory": "Destination",
 												"Filename": {
-													"value": "@item()",
+													"value": "@item().Tablename",
 													"type": "Expression"
 												}
 											}
