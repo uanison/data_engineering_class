@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADF-LwTN-DF100824"
+		},
+		"az_ADLS_adflwtn100824_accountKey": {
+			"value": ""
+		},
+		"az_SQLDB_ADF_LwTN_Server_password": {
+			"value": ""
+		},
+		"az_ADLS_adflwtn100824_properties_typeProperties_url": {
+			"value": "https://adflwtn100824.dfs.core.windows.net/"
+		},
+		"az_SQLDB_ADF_LwTN_Server_properties_typeProperties_server": {
+			"value": "adf-lwtn100824.database.windows.net"
+		},
+		"az_SQLDB_ADF_LwTN_Server_properties_typeProperties_database": {
+			"value": "ADF-LwTN-DB"
+		},
+		"az_SQLDB_ADF_LwTN_Server_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
