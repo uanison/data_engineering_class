@@ -5,6 +5,8 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Lookup blob for filename",
@@ -149,6 +151,8 @@
 			{
 				"name": "Lookup blob for filename",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -199,10 +203,7 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						{
-							"value": "@pipeline().parameters.filename",
-							"type": "Expression"
-						}
+						"itemName"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
