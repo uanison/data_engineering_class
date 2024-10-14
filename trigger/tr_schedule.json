@@ -1,0 +1,19 @@
+{
+	"name": "tr_schedule",
+	"properties": {
+		"description": "daily run at 6 AM",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-10-14T14:45:00",
+				"endTime": "2024-10-15T15:00:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}
