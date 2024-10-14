@@ -790,7 +790,7 @@
 						"type": "string"
 					},
 					"Filename": {
-						"type": "array"
+						"type": "string"
 					}
 				},
 				"annotations": [],
