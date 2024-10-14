@@ -807,7 +807,7 @@
 											"parameters": {
 												"schema": "SalesLT",
 												"Tablename": {
-													"value": "@item()",
+													"value": "@activity('Lookup1').output.value",
 													"type": "Expression"
 												}
 											}
@@ -821,7 +821,7 @@
 												"File_system": "data",
 												"Directory": "Destination",
 												"Filename": {
-													"value": "@item()",
+													"value": "@activity('Lookup1').output.value",
 													"type": "Expression"
 												}
 											}
