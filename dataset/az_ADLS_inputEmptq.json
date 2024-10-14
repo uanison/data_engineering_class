@@ -1,0 +1,154 @@
+{
+	"name": "az_ADLS_inputEmptq",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "az_ADLS_adflwtn100824",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ONTIME_REPORTING_021.csv",
+				"folderPath": "Source",
+				"fileSystem": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MONTH",
+				"type": "String"
+			},
+			{
+				"name": "DAY_OF_MONTH",
+				"type": "String"
+			},
+			{
+				"name": "DAY_OF_WEEK",
+				"type": "String"
+			},
+			{
+				"name": "OP_UNIQUE_CARRIER",
+				"type": "String"
+			},
+			{
+				"name": "TAIL_NUM",
+				"type": "String"
+			},
+			{
+				"name": "OP_CARRIER_FL_NUM",
+				"type": "String"
+			},
+			{
+				"name": "ORIGIN_AIRPORT_ID",
+				"type": "String"
+			},
+			{
+				"name": "ORIGIN",
+				"type": "String"
+			},
+			{
+				"name": "ORIGIN_CITY_NAME",
+				"type": "String"
+			},
+			{
+				"name": "DEST_AIRPORT_ID",
+				"type": "String"
+			},
+			{
+				"name": "DEST",
+				"type": "String"
+			},
+			{
+				"name": "DEST_CITY_NAME",
+				"type": "String"
+			},
+			{
+				"name": "CRS_DEP_TIME",
+				"type": "String"
+			},
+			{
+				"name": "DEP_TIME",
+				"type": "String"
+			},
+			{
+				"name": "DEP_DELAY_NEW",
+				"type": "String"
+			},
+			{
+				"name": "DEP_DEL15",
+				"type": "String"
+			},
+			{
+				"name": "DEP_TIME_BLK",
+				"type": "String"
+			},
+			{
+				"name": "CRS_ARR_TIME",
+				"type": "String"
+			},
+			{
+				"name": "ARR_TIME",
+				"type": "String"
+			},
+			{
+				"name": "ARR_DELAY_NEW",
+				"type": "String"
+			},
+			{
+				"name": "ARR_TIME_BLK",
+				"type": "String"
+			},
+			{
+				"name": "CANCELLED",
+				"type": "String"
+			},
+			{
+				"name": "CANCELLATION_CODE",
+				"type": "String"
+			},
+			{
+				"name": "CRS_ELAPSED_TIME",
+				"type": "String"
+			},
+			{
+				"name": "ACTUAL_ELAPSED_TIME",
+				"type": "String"
+			},
+			{
+				"name": "DISTANCE",
+				"type": "String"
+			},
+			{
+				"name": "DISTANCE_GROUP",
+				"type": "String"
+			},
+			{
+				"name": "CARRIER_DELAY",
+				"type": "String"
+			},
+			{
+				"name": "WEATHER_DELAY",
+				"type": "String"
+			},
+			{
+				"name": "NAS_DELAY",
+				"type": "String"
+			},
+			{
+				"name": "SECURITY_DELAY",
+				"type": "String"
+			},
+			{
+				"name": "LATE_AIRCRAFT_DELAY",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

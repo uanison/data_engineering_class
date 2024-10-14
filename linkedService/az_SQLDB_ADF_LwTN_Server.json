@@ -1,0 +1,17 @@
+{
+	"name": "az_SQLDB_ADF_LwTN_Server",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "adf-lwtn100824.database.windows.net",
+			"database": "ADF-LwTN-DB",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "sqladmin",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEMzMTVFRUUwLTdCNjctNDdERC1CNDM4LUI3NjU4MEVGMUNDRV8zZGY3YzA2YS1mYzcwLTRmNjUtODIyMy05MTFhZjk5NjhkZjUiDQp9"
+		}
+	}
+}

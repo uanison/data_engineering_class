@@ -1,0 +1,9 @@
+{
+	"name": "ADF-LwTN-DF100824",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fa524100-39e8-4dce-9022-a7dc71ed0e26",
+		"tenantId": "67871980-e3b7-4e5b-b43b-b6989ed94f8d"
+	}
+}
