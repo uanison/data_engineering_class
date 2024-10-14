@@ -573,7 +573,7 @@
 						"type": "string"
 					},
 					"Tablename": {
-						"type": "array"
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -651,7 +651,7 @@
 						"type": "string"
 					},
 					"Filename": {
-						"type": "array"
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -790,7 +790,7 @@
 						"type": "string"
 					},
 					"Filename": {
-						"type": "string"
+						"type": "array"
 					}
 				},
 				"annotations": [],
