@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Copy data from blob to sqldb_copy1').output",
 						"type": "Expression"
 					},
 					"activities": [
@@ -126,7 +126,13 @@
 							"inputs": [
 								{
 									"referenceName": "ds_ablob_input_sales_folder",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item().FileName",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -304,7 +310,13 @@
 							"inputs": [
 								{
 									"referenceName": "ds_ablob_input_sales_folder",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@activity('Get Metadata1').output.itemName",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
