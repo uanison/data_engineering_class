@@ -15,6 +15,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'az_SQLDB_ADF_LwTN_Server'"
 		},
+		"ls_adls_adfdemo1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_adfdemo1'"
+		},
+		"ls_ablob_adfdemo1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ablob_adfdemo1'"
+		},
 		"az_ADLS_adflwtn100824_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adflwtn100824.dfs.core.windows.net/"
@@ -30,6 +38,10 @@
 		"az_SQLDB_ADF_LwTN_Server_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "sqladmin"
+		},
+		"ls_adls_adfdemo1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adflwtn100824.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -64,6 +76,12 @@
 					"az_SQLDB_ADF_LwTN_Server_password": {
 						"value": "[parameters('az_SQLDB_ADF_LwTN_Server_password')]"
 					},
+					"ls_adls_adfdemo1_accountKey": {
+						"value": "[parameters('ls_adls_adfdemo1_accountKey')]"
+					},
+					"ls_ablob_adfdemo1_connectionString": {
+						"value": "[parameters('ls_ablob_adfdemo1_connectionString')]"
+					},
 					"az_ADLS_adflwtn100824_properties_typeProperties_url": {
 						"value": "[parameters('az_ADLS_adflwtn100824_properties_typeProperties_url')]"
 					},
@@ -75,10 +93,33 @@
 					},
 					"az_SQLDB_ADF_LwTN_Server_properties_typeProperties_userName": {
 						"value": "[parameters('az_SQLDB_ADF_LwTN_Server_properties_typeProperties_userName')]"
+					},
+					"ls_adls_adfdemo1_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_adfdemo1_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "ADF-LwTN-DF100824_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADF-LwTN-DF100824_ArmTemplate_0')]"
+			]
 		}
 	]
 }

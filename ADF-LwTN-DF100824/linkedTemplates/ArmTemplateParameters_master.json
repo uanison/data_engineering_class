@@ -11,6 +11,12 @@
 		"az_SQLDB_ADF_LwTN_Server_password": {
 			"value": ""
 		},
+		"ls_adls_adfdemo1_accountKey": {
+			"value": ""
+		},
+		"ls_ablob_adfdemo1_connectionString": {
+			"value": ""
+		},
 		"az_ADLS_adflwtn100824_properties_typeProperties_url": {
 			"value": "https://adflwtn100824.dfs.core.windows.net/"
 		},
@@ -22,6 +28,9 @@
 		},
 		"az_SQLDB_ADF_LwTN_Server_properties_typeProperties_userName": {
 			"value": "sqladmin"
+		},
+		"ls_adls_adfdemo1_properties_typeProperties_url": {
+			"value": "https://adflwtn100824.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""
