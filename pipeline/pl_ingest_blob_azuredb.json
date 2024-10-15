@@ -81,8 +81,10 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": "delete from dbo.Sales",
-									"writeBehavior": "insert",
+									"writeBehavior": "upsert",
+									"upsertSettings": {
+										"useTempDB": true
+									},
 									"sqlWriterUseTableLock": false,
 									"disableMetricsCollection": false
 								},
