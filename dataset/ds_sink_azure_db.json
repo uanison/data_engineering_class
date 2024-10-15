@@ -1,0 +1,37 @@
+{
+	"name": "ds_sink_azure_db",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "az_SQLDB_ADF_LwTN_Server",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Customer",
+				"type": "varchar"
+			},
+			{
+				"name": "Gender",
+				"type": "varchar"
+			},
+			{
+				"name": "Product_code",
+				"type": "varchar"
+			},
+			{
+				"name": "Price",
+				"type": "varchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Sales"
+		}
+	}
+}
