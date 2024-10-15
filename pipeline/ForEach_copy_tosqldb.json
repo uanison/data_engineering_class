@@ -1,11 +1,6 @@
 {
 	"name": "ForEach_copy_tosqldb",
 	"properties": {
-		"parameters": {
-			"filename": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
