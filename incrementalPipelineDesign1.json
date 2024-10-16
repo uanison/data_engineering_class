@@ -1,0 +1,160 @@
+{
+	"name": "incrementalPipelineDesign1",
+	"properties": {
+		"activities": [
+			{
+				"name": "capture ETL cutoff date",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select cast(max(ModifiedDate) as date) as incrdate from dbo.TargetCustomer",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "capture ETL cutoff date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "incrementaldate",
+					"value": {
+						"value": "@substring(activity('capture ETL cutoff date').output.value[0]['incrdate'],0,10)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('select * from SalesLT.Customer where ModifiedDate >= ''', variables('incrementaldate'),'''')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "IF OBJECT_ID (N'dbo.StageCustomer', N'U') IS NOT NULL \n   Truncate table dbo.StageCustomer",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTableDynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaname": "dbo",
+							"tablename": "StageCustomer"
+						}
+					}
+				]
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "MERGE  dbo.TargetCustomer AS Target\n    USING dbo.StageCustomer\tAS Source\n    ON Source.CustomerID = Target.CustomerID\n    \n    -- For Inserts\n    WHEN NOT MATCHED BY Target THEN\n        INSERT (CustomerID, NameStyle, Title, FirstName, MiddleName, LastName, Suffix, CompanyName, SalesPerson, EmailAddress, Phone, PasswordHash, PasswordSalt, rowguid, ModifiedDate) \n        VALUES (Source.CustomerID, Source.NameStyle, Source.Title, Source.FirstName, Source.MiddleName, Source.LastName, Source.Suffix, Source.CompanyName, Source.SalesPerson, Source.EmailAddress, Source.Phone, Source.PasswordHash, Source.PasswordSalt, Source.rowguid, Source.ModifiedDate)\n    \n    -- For Updates\n    WHEN MATCHED THEN UPDATE SET\n        Target.NameStyle\t= Source.NameStyle,\n        Target.Title\t\t= Source.Title,\n\t\tTarget.FirstName\t\t= Source.FirstName,\n\t\tTarget.MiddleName\t\t= Source.MiddleName,\n\t\tTarget.LastName\t\t= Source.LastName,\n\t\tTarget.Suffix\t\t= Source.Suffix,\n\t\tTarget.CompanyName\t\t= Source.CompanyName,\n\t\tTarget.SalesPerson\t\t= Source.SalesPerson,\n\t\tTarget.EmailAddress\t\t= Source.EmailAddress,\n\t\tTarget.Phone\t\t= Source.Phone,\n\t\tTarget.ModifiedDate = Source.ModifiedDate;"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			}
+		],
+		"variables": {
+			"incrementaldate": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
